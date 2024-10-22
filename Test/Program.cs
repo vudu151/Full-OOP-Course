@@ -2,7 +2,8 @@
 using Test.src.OOPPrinciples.Coupling;
 using Test.src.OOPPrinciples.Encapsultaion;
 //using Test.src.OOPPrinciples.Inheritance;
-using Test.src.OOPPrinciples.Polymorphism;
+//using Test.src.OOPPrinciples.Polymorphism;
+using Test.src.OOPPrinciples.Composition;
 
 // //1.Encapsulation (Tinh dong goi)
 // BankAccount bankAccount = new BankAccount(100);
@@ -41,7 +42,11 @@ using Test.src.OOPPrinciples.Polymorphism;
 //     vehicle.Start();
 // }
 
-//5.Coupling
-//var order = new Order(new EmailSender());
-var order = new Order(new SMSSender());
-order.PlaceOrder();
+// //5.Coupling
+// //var order = new Order(new EmailSender());
+// var order = new Order(new SMSSender());
+// order.PlaceOrder();
+
+//6.Composition
+var car = new Car();
+car.StartCar();
