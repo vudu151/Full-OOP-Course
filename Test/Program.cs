@@ -3,7 +3,11 @@ using Test.src.OOPPrinciples.Coupling;
 using Test.src.OOPPrinciples.Encapsultaion;
 //using Test.src.OOPPrinciples.Inheritance;
 //using Test.src.OOPPrinciples.Polymorphism;
-using Test.src.OOPPrinciples.Composition;
+//using Test.src.OOPPrinciples.Composition;
+using System.Drawing;
+using Test.src.SOLID.L;
+using Test.src.SOLID.I;
+using Test.src.SOLID.D;
 
 // //1.Encapsulation (Tinh dong goi)
 // BankAccount bankAccount = new BankAccount(100);
@@ -47,6 +51,28 @@ using Test.src.OOPPrinciples.Composition;
 // var order = new Order(new SMSSender());
 // order.PlaceOrder();
 
-//6.Composition
-var car = new Car();
-car.StartCar();
+// //6.Composition
+// var car = new Car();
+// car.StartCar();
+
+//SOLID
+//L:
+// var rec = new Test.src.SOLID.L.Square();
+// rec.Height = 10;
+// rec.Width = 5;
+// System.Console.WriteLine("Expected area = 10  * 5 = 50");
+// System.Console.WriteLine("Calculate area =" + rec.Area);
+
+// Shape rect = new Test.src.SOLID.L.Rectangle {Width = 5, Height = 4};
+// System.Console.WriteLine($"Area of the rectangle {rect.Area}");
+
+// Shape square = new Test.src.SOLID.L.Square {SideLength = 5};
+// System.Console.WriteLine($"Area of the square {square.Area}");
+
+// //C
+// var circle = new Circle();
+// circle.Radius = 10;
+// System.Console.WriteLine(circle.Area());
+
+//D
+var car = new Car(new Engine());
