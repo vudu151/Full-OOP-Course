@@ -1,15 +1,17 @@
-﻿using Test.src.OOPPrinciples.Abstraction;
-using Test.src.OOPPrinciples.Coupling;
-using Test.src.OOPPrinciples.Encapsultaion;
+﻿// using Test.src.OOPPrinciples.Abstraction;
+// using Test.src.OOPPrinciples.Coupling;
+// using Test.src.OOPPrinciples.Encapsultaion;
 //using Test.src.OOPPrinciples.Inheritance;
 //using Test.src.OOPPrinciples.Polymorphism;
 //using Test.src.OOPPrinciples.Composition;
-using System.Drawing;
-using Test.src.SOLID.L;
-using Test.src.SOLID.I;
-using Test.src.SOLID.D;
+// using System.Drawing;
+// using Test.src.SOLID.L;
+// using Test.src.SOLID.I;
+// using Test.src.SOLID.D;
+using Test.src.DesignPatterns.Creational.Prototype;
 
 // //1.Encapsulation (Tinh dong goi)
+// //1.1.Encapsulation (Tinh dong goi)
 // BankAccount bankAccount = new BankAccount(100);
 // System.Console.WriteLine(bankAccount.GetBalance());
 
@@ -20,13 +22,13 @@ using Test.src.SOLID.D;
 // System.Console.WriteLine(bankAccount.GetBalance());
 
 
-// //2.Abstraction
+// //1.2 :Abstraction
 // //Reduce complexity by hiding unnecessary details
 // EmailService emailService = new EmailService();
 // emailService.SendMail();
 
 
-// //3.Inheritance
+// //1.3: Inheritance
 // var car = new Car();
 // //Shared
 // car.Brand = "Ford";
@@ -36,7 +38,7 @@ using Test.src.SOLID.D;
 // //Unique
 // car.NumberOfDoors = 4;
 
-// //4. Polymorphism is the ability of an object to take many forms.
+// //1.4 : Polymorphism is the ability of an object to take many forms.
 // List<Vehicle> vehicles = new List<Vehicle>();
 // vehicles.Add(new Car{Brand = "Toyota", Model = "Camry", Year = 2020, NumberOfDoors = 4});
 // vehicles.Add(new Motorcycle{Brand = "Harly", Model = "Camry", Year = 2020});
@@ -46,17 +48,17 @@ using Test.src.SOLID.D;
 //     vehicle.Start();
 // }
 
-// //5.Coupling
+// //1.5 : Coupling
 // //var order = new Order(new EmailSender());
 // var order = new Order(new SMSSender());
 // order.PlaceOrder();
 
-// //6.Composition
+// //1.6 : Composition
 // var car = new Car();
 // car.StartCar();
 
-//SOLID
-//L:
+////2. SOLID
+//2.1 : L
 // var rec = new Test.src.SOLID.L.Square();
 // rec.Height = 10;
 // rec.Width = 5;
@@ -74,5 +76,26 @@ using Test.src.SOLID.D;
 // circle.Radius = 10;
 // System.Console.WriteLine(circle.Area());
 
-//D
-var car = new Car(new Engine());
+// //D
+// var car = new Car(new Engine());
+
+////3. Design pattern 
+//3.1: Prototype pattern
+var circle = new Circle();
+circle.Draw();
+
+circle.Radius = 12;     //user clicks and drags to resize
+
+var rectangle = new Rectangle();
+rectangle.Draw();
+
+rectangle.Width = 20;   //user clicks and drags rectangle to resize
+rectangle.Height = 12;
+
+//user right-click and selecting "duplicate"
+var shapeAction = new ShapeAction();
+Shape newCircle = shapeAction.Duplicate(circle);
+newCircle.Draw();
+
+Shape newRectangle = shapeAction.Duplicate(rectangle);
+newRectangle.Draw();
