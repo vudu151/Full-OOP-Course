@@ -8,7 +8,8 @@
 // using Test.src.SOLID.L;
 // using Test.src.SOLID.I;
 // using Test.src.SOLID.D;
-using Test.src.DesignPatterns.Creational.Prototype;
+//using Test.src.DesignPatterns.Creational.Prototype;
+using Test.src.DesignPatterns.Creational.Singleton.Good;
 
 // //1.Encapsulation (Tinh dong goi)
 // //1.1.Encapsulation (Tinh dong goi)
@@ -79,23 +80,31 @@ using Test.src.DesignPatterns.Creational.Prototype;
 // //D
 // var car = new Car(new Engine());
 
-////3. Design pattern 
+// ////3. Design pattern 
+// //3.1: Prototype pattern
+// var circle = new Circle();
+// circle.Draw();
+
+// circle.Radius = 12;     //user clicks and drags to resize
+
+// var rectangle = new Rectangle();
+// rectangle.Draw();
+
+// rectangle.Width = 20;   //user clicks and drags rectangle to resize
+// rectangle.Height = 12;
+
+// //user right-click and selecting "duplicate"
+// var shapeAction = new ShapeAction();
+// Shape newCircle = shapeAction.Duplicate(circle);
+// newCircle.Draw();
+
+// Shape newRectangle = shapeAction.Duplicate(rectangle);
+// newRectangle.Draw();
+
 //3.1: Prototype pattern
-var circle = new Circle();
-circle.Draw();
-
-circle.Radius = 12;     //user clicks and drags to resize
-
-var rectangle = new Rectangle();
-rectangle.Draw();
-
-rectangle.Width = 20;   //user clicks and drags rectangle to resize
-rectangle.Height = 12;
-
-//user right-click and selecting "duplicate"
-var shapeAction = new ShapeAction();
-Shape newCircle = shapeAction.Duplicate(circle);
-newCircle.Draw();
-
-Shape newRectangle = shapeAction.Duplicate(rectangle);
-newRectangle.Draw();
+var setting = AppSettings.GetInstance();
+setting.Set("app_name", "Design pattern");
+setting.Set("app_creator", "Design pattern creator");
+System.Console.WriteLine(setting.Get("app_name"));
+TestSingletonGood.Run();
+//TestSingleton.Run();
