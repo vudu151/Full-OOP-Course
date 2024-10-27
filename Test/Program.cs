@@ -9,7 +9,8 @@
 // using Test.src.SOLID.I;
 // using Test.src.SOLID.D;
 //using Test.src.DesignPatterns.Creational.Prototype;
-using Test.src.DesignPatterns.Creational.Singleton.Good;
+using Test.src.DesignPatterns.Creational.AbstractFactory;
+//using Test.src.DesignPatterns.Creational.Singleton.Good;
 
 // //1.Encapsulation (Tinh dong goi)
 // //1.1.Encapsulation (Tinh dong goi)
@@ -101,10 +102,24 @@ using Test.src.DesignPatterns.Creational.Singleton.Good;
 // Shape newRectangle = shapeAction.Duplicate(rectangle);
 // newRectangle.Draw();
 
-//3.1: Prototype pattern
-var setting = AppSettings.GetInstance();
-setting.Set("app_name", "Design pattern");
-setting.Set("app_creator", "Design pattern creator");
-System.Console.WriteLine(setting.Get("app_name"));
-TestSingletonGood.Run();
-//TestSingleton.Run();
+// //3.2: Singleton pattern
+// var setting = AppSettings.GetInstance();
+// setting.Set("app_name", "Design pattern");
+// setting.Set("app_creator", "Design pattern creator");
+// System.Console.WriteLine(setting.Get("app_name"));
+// TestSingletonGood.Run();
+// //TestSingleton.Run();
+
+// //3.3: AbstractFactory pattern
+var os = OperatingSystemType.Windows;
+IUIComponentFactory uIComponentFactory;
+
+if(os == OperatingSystemType.Windows){
+    uIComponentFactory = new WindowsUIComponentFactory();
+} else if(os == OperatingSystemType.Mac){
+    uIComponentFactory = new MacUIComponentFactory();
+} else{
+    throw new Exception("Unknown operating system");
+}
+
+new UserSettingsForm().Render(uIComponentFactory);
