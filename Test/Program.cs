@@ -10,6 +10,10 @@
 // using Test.src.SOLID.D;
 //using Test.src.DesignPatterns.Creational.Prototype;
 using Test.src.DesignPatterns.Creational.AbstractFactory;
+using Test.src.DesignPatterns.Creational.Buider.Good;
+using Test.src.DesignPatterns.Creational.Builder.Bad;
+using Test.src.DesignPatterns.Creational.Builder.Components;
+using Test.src.DesignPatterns.Creational.Builder.Good;
 //using Test.src.DesignPatterns.Creational.Singleton.Good;
 
 // //1.Encapsulation (Tinh dong goi)
@@ -111,15 +115,69 @@ using Test.src.DesignPatterns.Creational.AbstractFactory;
 // //TestSingleton.Run();
 
 // //3.3: AbstractFactory pattern
-var os = OperatingSystemType.Windows;
-IUIComponentFactory uIComponentFactory;
+// var os = OperatingSystemType.Windows;
+// IUIComponentFactory uIComponentFactory;
 
-if(os == OperatingSystemType.Windows){
-    uIComponentFactory = new WindowsUIComponentFactory();
-} else if(os == OperatingSystemType.Mac){
-    uIComponentFactory = new MacUIComponentFactory();
-} else{
-    throw new Exception("Unknown operating system");
-}
+// if(os == OperatingSystemType.Windows){
+//     uIComponentFactory = new WindowsUIComponentFactory();
+// } else if(os == OperatingSystemType.Mac){
+//     uIComponentFactory = new MacUIComponentFactory();
+// } else{
+//     throw new Exception("Unknown operating system");
+// }
 
-new UserSettingsForm().Render(uIComponentFactory);
+// new UserSettingsForm().Render(uIComponentFactory);
+
+// //3.4. Builder pattern
+////Bad
+// var sportsCar = new Car(CarType.Sports, 2, false, new Engine(), new Dashboard(hasRevCounter: true), new Wheels(diameterInInches: 20), new GPSNavigator());
+// sportsCar.Fuel = 100;
+
+// var suvCar = new Car(CarType.SUV, 5, false, new Engine(), new Dashboard(hasRevCounter: true), new Wheels(diameterInInches: 19), new GPSNavigator());
+// sportsCar.Fuel = 40;
+
+// var sportsCarManual = new Manual(CarType.Sports, 2, false, new Engine(), new Dashboard(hasRevCounter: true), new Wheels(diameterInInches: 20), new GPSNavigator());
+// System.Console.WriteLine(sportsCarManual.Print());
+
+// var suvManual = new Manual(CarType.SUV, 5, false, new Engine(), new Dashboard(hasRevCounter: true), new Wheels(diameterInInches: 19), new GPSNavigator());
+// System.Console.WriteLine(suvManual.Print());
+
+////Good 1
+// var carBuilder = new CarBuilder();
+// carBuilder.SetCarType(CarType.Sports)
+//     .SetSeats(2)
+//     .SetEngine(new Engine())
+//     .SetDashboard(new Dashboard(hasRevCounter: true))
+//     .SetWheels(new Wheels(diameterInInches: 20));
+// var sportsCar = carBuilder.GetCar();
+// sportsCar.Fuel = 100;
+
+// var manualBuilder = new CarManualBuilder();
+// manualBuilder.SetCarType(CarType.Sports)
+//     .SetSeats(2)
+//     .SetEngine(new Engine())
+//     .SetDashboard(new Dashboard(hasRevCounter: true))
+//     .SetWheels(new Wheels(diameterInInches: 20));
+// var sportsCarManual = manualBuilder.GetManual();
+// System.Console.WriteLine(sportsCarManual.Print());
+
+////Good 2
+var carBuilder = new CarBuilder();
+var director = new Director();
+
+director.ConstructorSportCar(carBuilder); 
+var sportsCar = carBuilder.GetCar();
+sportsCar.Fuel = 100;
+
+director.ConstructorSUV(carBuilder);
+var suvCar = carBuilder.GetCar();
+suvCar.Fuel = 40;
+
+var manualBuilder = new CarManualBuilder();
+director.ConstructorSportCar(manualBuilder);
+var sportsCarManual = manualBuilder.GetManual(); 
+System.Console.WriteLine(sportsCarManual.Print());
+
+director.ConstructorSUV(manualBuilder);
+var suvManual = manualBuilder.GetManual(); 
+System.Console.WriteLine(suvManual.Print());
