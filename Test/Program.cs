@@ -14,6 +14,7 @@ using Test.src.DesignPatterns.Creational.Buider.Good;
 using Test.src.DesignPatterns.Creational.Builder.Bad;
 using Test.src.DesignPatterns.Creational.Builder.Components;
 using Test.src.DesignPatterns.Creational.Builder.Good;
+using Test.src.DesignPatterns.Structural.Composite;
 //using Test.src.DesignPatterns.Creational.Singleton.Good;
 
 // //1.Encapsulation (Tinh dong goi)
@@ -86,6 +87,7 @@ using Test.src.DesignPatterns.Creational.Builder.Good;
 // var car = new Car(new Engine());
 
 // ////3. Design pattern 
+// ////3. Design pattern - Creational
 // //3.1: Prototype pattern
 // var circle = new Circle();
 // circle.Draw();
@@ -162,22 +164,44 @@ using Test.src.DesignPatterns.Creational.Builder.Good;
 // System.Console.WriteLine(sportsCarManual.Print());
 
 ////Good 2
-var carBuilder = new CarBuilder();
-var director = new Director();
+// var carBuilder = new CarBuilder();
+// var director = new Director();
 
-director.ConstructorSportCar(carBuilder); 
-var sportsCar = carBuilder.GetCar();
-sportsCar.Fuel = 100;
+// director.ConstructorSportCar(carBuilder); 
+// var sportsCar = carBuilder.GetCar();
+// sportsCar.Fuel = 100;
 
-director.ConstructorSUV(carBuilder);
-var suvCar = carBuilder.GetCar();
-suvCar.Fuel = 40;
+// director.ConstructorSUV(carBuilder);
+// var suvCar = carBuilder.GetCar();
+// suvCar.Fuel = 40;
 
-var manualBuilder = new CarManualBuilder();
-director.ConstructorSportCar(manualBuilder);
-var sportsCarManual = manualBuilder.GetManual(); 
-System.Console.WriteLine(sportsCarManual.Print());
+// var manualBuilder = new CarManualBuilder();
+// director.ConstructorSportCar(manualBuilder);
+// var sportsCarManual = manualBuilder.GetManual(); 
+// System.Console.WriteLine(sportsCarManual.Print());
 
-director.ConstructorSUV(manualBuilder);
-var suvManual = manualBuilder.GetManual(); 
-System.Console.WriteLine(suvManual.Print());
+// director.ConstructorSUV(manualBuilder);
+// var suvManual = manualBuilder.GetManual(); 
+// System.Console.WriteLine(suvManual.Print());
+
+//--------------------------------------------------------------
+// ////3. Design pattern - Structural
+////3.1. Composite Pattern
+var package = new Box();
+
+var box1 = new Box();   
+box1.Add(new Microphone());
+
+var box2 = new Box();   //box2 contains box3 and box4 contains
+
+var box3 = new Box();
+box3.Add(new Mouse());
+var box4 = new Box();
+box4.Add(new Keyboard());
+
+System.Console.WriteLine("Total price of package =" + package.GetPrice());
+box2.Add(box3);
+box2.Add(box4);
+
+package.Add(box1);
+package.Add(box2);
