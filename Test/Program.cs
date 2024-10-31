@@ -14,6 +14,8 @@ using Test.src.DesignPatterns.Creational.Buider.Good;
 using Test.src.DesignPatterns.Creational.Builder.Bad;
 using Test.src.DesignPatterns.Creational.Builder.Components;
 using Test.src.DesignPatterns.Creational.Builder.Good;
+using Test.src.DesignPatterns.Structural.Adapter;
+using Test.src.DesignPatterns.Structural.Adapter.Package;
 using Test.src.DesignPatterns.Structural.Composite;
 //using Test.src.DesignPatterns.Creational.Singleton.Good;
 
@@ -187,21 +189,25 @@ using Test.src.DesignPatterns.Structural.Composite;
 //--------------------------------------------------------------
 // ////3. Design pattern - Structural
 ////3.1. Composite Pattern
-var package = new Box();
+// var package = new Box();
 
-var box1 = new Box();   
-box1.Add(new Microphone());
+// var box1 = new Box();   
+// box1.Add(new Microphone());
 
-var box2 = new Box();   //box2 contains box3 and box4 contains
+// var box2 = new Box();   //box2 contains box3 and box4 contains
 
-var box3 = new Box();
-box3.Add(new Mouse());
-var box4 = new Box();
-box4.Add(new Keyboard());
+// var box3 = new Box();
+// box3.Add(new Mouse());
+// var box4 = new Box();
+// box4.Add(new Keyboard());
 
-System.Console.WriteLine("Total price of package =" + package.GetPrice());
-box2.Add(box3);
-box2.Add(box4);
+// System.Console.WriteLine("Total price of package =" + package.GetPrice());
+// box2.Add(box3);
+// box2.Add(box4);
 
-package.Add(box1);
-package.Add(box2);
+// package.Add(box1);
+// package.Add(box2);
+
+////3.2. Adapter Pattern
+var videoEditor = new VideoEditor(new Video());
+videoEditor.ApplyColor(new RainbowColor(new Rainbow()));
