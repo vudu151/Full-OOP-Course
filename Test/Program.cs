@@ -9,6 +9,7 @@
 // using Test.src.SOLID.I;
 // using Test.src.SOLID.D;
 //using Test.src.DesignPatterns.Creational.Prototype;
+using Microsoft.VisualBasic;
 using Test.src.DesignPatterns.Creational.AbstractFactory;
 using Test.src.DesignPatterns.Creational.Buider.Good;
 using Test.src.DesignPatterns.Creational.Builder.Bad;
@@ -16,6 +17,8 @@ using Test.src.DesignPatterns.Creational.Builder.Components;
 using Test.src.DesignPatterns.Creational.Builder.Good;
 using Test.src.DesignPatterns.Structural.Adapter;
 using Test.src.DesignPatterns.Structural.Adapter.Package;
+//using Test.src.DesignPatterns.Structural.Bridge.Bad;
+using Test.src.DesignPatterns.Structural.Bridge.Good;
 using Test.src.DesignPatterns.Structural.Composite;
 //using Test.src.DesignPatterns.Creational.Singleton.Good;
 
@@ -209,5 +212,26 @@ using Test.src.DesignPatterns.Structural.Composite;
 // package.Add(box2);
 
 ////3.2. Adapter Pattern
-var videoEditor = new VideoEditor(new Video());
-videoEditor.ApplyColor(new RainbowColor(new Rainbow()));
+// var videoEditor = new VideoEditor(new Video());
+// videoEditor.ApplyColor(new RainbowColor(new Rainbow()));
+
+////3.2. Bridge Pattern
+////Bad
+// var lgRemote = new LGRemote();
+// lgRemote.TurnOn();
+// lgRemote.TurnOff();
+
+// var lgRadioAndTVRemote = new LGRadioAndTVRemote();
+// lgRadioAndTVRemote.ControlTV();
+// lgRadioAndTVRemote.TurnOn();
+// lgRadioAndTVRemote.VolumneUp();
+
+////Good
+var lgRemoteControl = new RemoteControl(new LGRadio());
+lgRemoteControl.TurnOn();
+lgRemoteControl.TurnOff();
+
+var advancedSonyControl = new AdvancedRemote(new SonyRadio());
+advancedSonyControl.TurnOn();
+advancedSonyControl.TurnOff();
+advancedSonyControl.SetChannel(2); 
